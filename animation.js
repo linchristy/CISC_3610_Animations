@@ -34,37 +34,34 @@ Scene.clearCanvas = function(){
     Scene.canvasContext.fillRect(0,0, Scene.canvas.width, Scene.canvas.height);
 };
 
-var counter =0; 
+Scene.textBubble = function(){
+    Scene.canvasContext.strokeStyle="#000000";
+    Scene.canvasContext.fillStyle="#FFFFFF";
+    Scene.canvasContext.lineWidth="2";
+    Scene.canvasContext.beginPath();
+    Scene.canvasContext.arc(586,139,83,0,2*Math.PI);
+    Scene.canvasContext.stroke();
+    Scene.canvasContext.fill();
+
+    // After pikachu picks up an apple
+    // Text of pikachu appears
+    Scene.canvasContext.font = "30px Arial";
+    Scene.canvasContext.fillStyle = "red";
+    Scene.canvasContext.fillText("Please", 550, 30);
+    Scene.canvasContext.fillText("have an", 344, 80);
+    Scene.canvasContext.fillText("apple!", 350, 110);
+}
+
 Scene.mainLoop = function() {
-
-    if(counter >= 8){
-        Scene.canvasContext.strokeStyle="#000000";
-        Scene.canvasContext.fillStyle="#FFFFFF";
-        Scene.canvasContext.lineWidth="2";
-        Scene.canvasContext.beginPath();
-        Scene.canvasContext.arc(900, 70,83,0,2*Math.PI);
-        Scene.canvasContext.stroke();
-        Scene.canvasContext.fill();
-
-        // After pikachu picks up an apple
-        // Text of pikachu appears
-        Scene.canvasContext.font = "30px Arial";
-        Scene.canvasContext.fillStyle = "#000000";
-        Scene.canvasContext.fillText("Please", 850, 50);
-        Scene.canvasContext.fillText("have an", 844, 80);
-        Scene.canvasContext.fillText("apple!", 850, 110);
-        Scene.clearCanvas();
-    }else{
-        Scene.clearCanvas();
-        Scene.update();
-        Scene.draw();
+    Scene.clearCanvas();
+    Scene.update();
+    Scene.draw();
+    if(Scene.sprite.frame >= 8){
+        Scene.textBubble();
     }
-	
+
 	// Animate at 9 frames a second.
     window.setTimeout(Scene.mainLoop, 1000 /9);
-
-    Scene.sprite.frame++;
-    counter++;
 };
 
 Scene.update = function(){
@@ -83,4 +80,6 @@ Scene.draw = function() {
 	if(Scene.sprite.frame==Scene.sprite.frames.length){
         Scene.sprite.frame =0;
     }
+
+    Scene.sprite.frame++;
 };
