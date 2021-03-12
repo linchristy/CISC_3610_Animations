@@ -36,27 +36,10 @@ Scene.clearCanvas = function(){
 
 var counter =0; 
 Scene.mainLoop = function() {
-    Scene.clearCanvas();
-    Scene.update();
-    Scene.draw();
-	
-	// Animate at 9 frames a second.
-    window.setTimeout(Scene.mainLoop, 1000 /9);
-};
 
-Scene.update = function(){
-    // Set the canvas width to be that of the display Window. 
-    // Which helps if you resize the window
-    //Scene.canvas.width = window.innerWidth;
-
-    // Set the location of the next frame
-    Scene.sprite.offset = 0;
-}
-
-Scene.draw = function() {
-    Scene.canvasContext.drawImage(Scene.sprite.img,Scene.sprite.frames[Scene.sprite.frame].frame.x,Scene.sprite.frames[Scene.sprite.frame].frame.y,Scene.sprite.frames[Scene.sprite.frame].frame.w,Scene.sprite.frames[Scene.sprite.frame].frame.h,Scene.sprite.offset,0,Scene.sprite.frames[Scene.sprite.frame].frame.w,Scene.sprite.frames[Scene.sprite.frame].frame.h);
-
-    if(Scene.sprite.frame >= 8){
+    if(counter > 16){
+        counter = 0;
+    }else if(counter >= 8){
         Scene.canvasContext.strokeStyle="#000000";
         Scene.canvasContext.fillStyle="#FFFFFF";
         Scene.canvasContext.lineWidth="2";
@@ -72,12 +55,29 @@ Scene.draw = function() {
         Scene.canvasContext.fillText("Please", 850, 50);
         Scene.canvasContext.fillText("have an", 844, 80);
         Scene.canvasContext.fillText("apple!", 850, 110);
+        Scene.clearCanvas();
+    }else{
+        Scene.clearCanvas();
+        Scene.update();
+        Scene.draw();
     }
-	// Advance to the next frame.
-	Scene.sprite.frame++;
+	
+	// Animate at 9 frames a second.
+    window.setTimeout(Scene.mainLoop, 1000 /9);
 
-	// At the end of the sprite sheet, start at the second gif.
-	if(Scene.sprite.frame==Scene.sprite.frames.length){
-        Scene.sprite.frame =0;
-    }
+    Scene.sprite.frame++;
+    counter++;
+};
+
+Scene.update = function(){
+    // Set the canvas width to be that of the display Window. 
+    // Which helps if you resize the window
+    //Scene.canvas.width = window.innerWidth;
+
+    // Set the location of the next frame
+    Scene.sprite.offset = 0;
+}
+
+Scene.draw = function() {
+    Scene.canvasContext.drawImage(Scene.sprite.img,Scene.sprite.frames[Scene.sprite.frame].frame.x,Scene.sprite.frames[Scene.sprite.frame].frame.y,Scene.sprite.frames[Scene.sprite.frame].frame.w,Scene.sprite.frames[Scene.sprite.frame].frame.h,135,50,Scene.sprite.frames[Scene.sprite.frame].frame.w,Scene.sprite.frames[Scene.sprite.frame].frame.h);
 };
