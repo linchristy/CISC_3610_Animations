@@ -48,7 +48,7 @@ Scene.clearCanvas = function(){
 Scene.mainLoop = function() {
     Scene.clearCanvas();
     Scene.update();
-    Scene.draw();
+    Scene.drawCaterpie();
 	
 	// Animate at 9 frames a second.
     window.setTimeout(Scene.mainLoop, 1000 /9);
