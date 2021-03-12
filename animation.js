@@ -49,13 +49,14 @@ Scene.textBubble = function(){
     Scene.canvasContext.fillStyle = "#000000";
     Scene.canvasContext.fillText("Please", 540, 100);
     Scene.canvasContext.fillText("have an", 534, 130);
-    Scene.canvasContext.fillText("apple!", 542, 160);
+    Scene.canvasContext.fillText("apple!", 544, 160);
 }
 
 Scene.mainLoop = function() {
     Scene.clearCanvas();
     Scene.update();
     Scene.draw();
+    // At the eigth frame, show text speech
     if(Scene.sprite.frame >= 8){
         Scene.textBubble();
     }
@@ -65,10 +66,6 @@ Scene.mainLoop = function() {
 };
 
 Scene.update = function(){
-    // Set the canvas width to be that of the display Window. 
-    // Which helps if you resize the window
-    //Scene.canvas.width = window.innerWidth;
-
     // Set the location of the next frame
     Scene.sprite.offset = 0;
 }
@@ -78,8 +75,8 @@ Scene.draw = function() {
 
     Scene.sprite.frame++;
 
-    // At the end of the sprite sheet, start at the second gif.
+    // At the end of the sprite sheet, start at the first gif
 	if(Scene.sprite.frame==Scene.sprite.frames.length){
-        Scene.sprite.frame =0;
+        Scene.sprite.frame=0;
     }
 };
