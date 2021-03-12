@@ -37,9 +37,7 @@ Scene.clearCanvas = function(){
 var counter =0; 
 Scene.mainLoop = function() {
 
-    if(counter > 16){
-        counter = 0;
-    }else if(counter >= 8){
+    if(counter >= 8){
         Scene.canvasContext.strokeStyle="#000000";
         Scene.canvasContext.fillStyle="#FFFFFF";
         Scene.canvasContext.lineWidth="2";
@@ -80,4 +78,9 @@ Scene.update = function(){
 
 Scene.draw = function() {
     Scene.canvasContext.drawImage(Scene.sprite.img,Scene.sprite.frames[Scene.sprite.frame].frame.x,Scene.sprite.frames[Scene.sprite.frame].frame.y,Scene.sprite.frames[Scene.sprite.frame].frame.w,Scene.sprite.frames[Scene.sprite.frame].frame.h,135,50,Scene.sprite.frames[Scene.sprite.frame].frame.w,Scene.sprite.frames[Scene.sprite.frame].frame.h);
+
+    // At the end of the sprite sheet, start at the second gif.
+	if(Scene.sprite.frame==Scene.sprite.frames.length){
+        Scene.sprite.frame =0;
+    }
 };
