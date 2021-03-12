@@ -1,9 +1,10 @@
 "use strict";
-var Scene, Scene1;
-Scene = Scene1 = {
+
+var Scene = {
     canvas: undefined,
     canvasContext: undefined,
-    sprite: undefined
+    sprite: undefined, 
+    sprite1: undefined
 };
 
 Scene.start = function(){
@@ -13,15 +14,24 @@ Scene.start = function(){
 
     // Setup the pikachu to be displayed
     Scene.sprite = pikachu;
+    Scene.sprite1 = caterpie;
 
     // Attach the iamge to be used for the sprite.
     Scene.sprite.img = new Image();
     Scene.sprite.img.src = Scene.sprite.src;
 
+    // Attach the image to be used for the sprite.
+    Scene.sprite1.img = new Image();
+    Scene.sprite1.img.src = Scene.sprite1.src;
 
     //Wait till the pikachu image is loaded before starting the animation
     Scene.sprite.img.onload = function(){
-        //Scene.sprite.offset=Scene.sprite.frames[Scene.sprite.frame].frame.w;
+        Scene.sprite.offset=Scene.sprite.frames[Scene.sprite.frame].frame.w;
+        Scene.mainLoop();
+    };
+
+    Scene.sprite1.img.onload = function(){
+        Scene.sprite1.offset=Scene.sprite1.frames[Scene.sprite1.frame].frame.w;
         Scene.mainLoop();
     };
 };
@@ -51,6 +61,7 @@ Scene.update = function(){
 
     // Set the location of the next frame
     Scene.sprite.offset = 460;
+    Scene.sprite1.offset = 460;
 }
 
 Scene.draw = function() {
@@ -82,55 +93,12 @@ Scene.draw = function() {
     }
 };
 
-// Scene1.start = function(){
-//     // Get the canvas and it's context
-//     Scene1.canvas = document.getElementById("myCanvas");
-//     Scene1.canvasContext = Scene1.canvas.getContext("2d");
+Scene.drawCaterpie = function(){
+    Scene.canvasContext.drawImage(Scene.sprite1.img,Scene.sprite1.frames[Scene.sprite1.frame].frame.x,Scene.sprite1.frames[Scene.sprite1.frame].frame.y,Scene.sprite1.frames[Scene.sprite1.frame].frame.w,Scene.sprite1.frames[Scene.sprite1.frame].frame.h,Scene.sprite1.offset,0,Scene.sprite1.frames[Scene.sprite1.frame].frame.w,Scene.sprite1.frames[Scene.sprite1.frame].frame.h);
 
-//     // Setup caterpie to be displayed
-//     Scene1.sprite = caterpie;
+    Scene.sprite1.frame++;
 
-//     // Attach the image to be used for the sprite
-//     Scene1.sprite.img = new Image();
-//     Scene1.sprite.img.src = Scene1.sprite.src;
-
-//     //Wait till the caterpie image is loaded before starting the animation
-//     Scene1.sprite.img.onload = function(){
-//         Scene1.mainLoop();
-//     };
-// };
-
-// Scene1.clearCanvas = function(){
-//     Scene1.canvasContext.fillStyle = "#FFFFFF";
-//     Scene1.canvasContext.fillRect(0,0, Scene1.canvas.width, Scene1.canvas.height);
-// };
-
-// Scene1.mainLoop = function(){
-//     Scene1.clearCanvas();
-//     Scene1.update();
-//     Scene1.draw();
-
-//     // Animate at 9 frames a second.
-//     window.setTimeout(Scene1.mainLoop, 1000/9);
-// };
-
-// Scene1.update = function(){
-//     // Set the canvas width to be that of the display Window
-//     // Which helps if you resize the window
-//     Scene1.canvas.width = window.innerWidth;
-
-//     // Set the location of the next frame
-//     Scene1.sprite.offset = 460;
-// }
-
-// Scene1.draw = function(){
-//     Scene1.canvasContext.drawImage(Scene1.sprite.img,Scene1.sprite.frames[Scene1.sprite.frame].frame.x,Scene1.sprite.frames[Scene1.sprite.frame].frame.y,Scene1.sprite.frames[Scene1.sprite.frame].frame.w,Scene1.sprite.frames[Scene1.sprite.frame].frame.h,Scene1.sprite.offset,0,Scene1.sprite.frames[Scene1.sprite.frame].frame.w,Scene1.sprite.frames[Scene1.sprite.frame].frame.h);
-
-//     // Advance to the next framw
-//     Scene1.sprite.frame++;
-
-//     // At the end of the sprite sheet, begin at the first gif
-//     if(Scene1.sprite.frame== Scene1.sprite.frames.length){
-//         Scene.sprite.frame=0;
-//     }
-// };
+    if(Scene.sprite1.frame== Scene.sprite1.frames.length){
+        Scene.sprite1.frame =0;
+    }
+};
