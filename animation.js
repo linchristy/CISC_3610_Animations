@@ -18,7 +18,7 @@ Scene.start = function(){
     Scene.sprite.img = new Image();
     Scene.sprite.img.src = Scene.sprite.src;
 
-    //Wait till the pikachu image is loaded before starting the animation
+    // Wait till the pikachu image is loaded before starting the animation
     Scene.sprite.img.onload = function(){
         Scene.sprite.offset=Scene.sprite.frames[Scene.sprite.frame].frame.w;
         Scene.mainLoop();
