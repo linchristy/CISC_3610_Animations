@@ -76,10 +76,10 @@ Scene.update = function(){
 Scene.draw = function() {
     Scene.canvasContext.drawImage(Scene.sprite.img,Scene.sprite.frames[Scene.sprite.frame].frame.x,Scene.sprite.frames[Scene.sprite.frame].frame.y,Scene.sprite.frames[Scene.sprite.frame].frame.w,Scene.sprite.frames[Scene.sprite.frame].frame.h,135,50,Scene.sprite.frames[Scene.sprite.frame].frame.w,Scene.sprite.frames[Scene.sprite.frame].frame.h);
 
+    Scene.sprite.frame++;
+
     // At the end of the sprite sheet, start at the second gif.
 	if(Scene.sprite.frame==Scene.sprite.frames.length){
         Scene.sprite.frame =0;
     }
-
-    Scene.sprite.frame++;
 };
