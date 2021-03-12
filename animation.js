@@ -39,17 +39,17 @@ Scene.textBubble = function(){
     Scene.canvasContext.fillStyle="#FFFFFF";
     Scene.canvasContext.lineWidth="2";
     Scene.canvasContext.beginPath();
-    Scene.canvasContext.arc(586,139,83,0,2*Math.PI);
+    Scene.canvasContext.arc(586,129,83,0,2*Math.PI);
     Scene.canvasContext.stroke();
     Scene.canvasContext.fill();
 
     // After pikachu picks up an apple
     // Text of pikachu appears
     Scene.canvasContext.font = "30px Arial";
-    Scene.canvasContext.fillStyle = "red";
-    Scene.canvasContext.fillText("Please", 550, 30);
-    Scene.canvasContext.fillText("have an", 344, 80);
-    Scene.canvasContext.fillText("apple!", 350, 110);
+    Scene.canvasContext.fillStyle = "#000000";
+    Scene.canvasContext.fillText("Please", 540, 100);
+    Scene.canvasContext.fillText("have an", 534, 130);
+    Scene.canvasContext.fillText("apple!", 542, 160);
 }
 
 Scene.mainLoop = function() {
