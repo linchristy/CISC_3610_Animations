@@ -80,3 +80,8 @@ Scene.draw = function() {
         Scene.sprite.frame=0;
     }
 };
+
+Scene.cat = function(){
+    var image = new Image();
+    image.src ="cat.png"
+}
